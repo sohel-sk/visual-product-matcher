@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    // ── File & Output ───────────────────────────────────────
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",     // faster incremental builds
+
+    // ── Module & Node.js compatibility (ESM) ────────────────
+    "module": "nodenext",           // ← best choice for Node.js ≥ 20 + ESM
+    "moduleResolution": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext"],
+
+    // Required for Node.js types + express, etc.
+    "types": ["node"],
+
+    // ── Output features ─────────────────────────────────────
+    "sourceMap": true,
+    "declaration": true,            // .d.ts files (good for libraries or monorepos)
+    "declarationMap": true,
+
+    // ── Very strict & modern safety (strongly recommended) ──
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,     // ← very useful in large teams
+    "noFallthroughCasesInSwitch": true,
+
+    // Good defaults / modern style
+    "verbatimModuleSyntax": true,   // prevents `import type` abuse
+    "isolatedModules": true,        // required by esbuild/tsx/swc
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,           // faster, usually safe
+    "allowImportingTsExtensions": false,  // keep false if using tsc → dist
+
+    // ── Uncomment these gradually as your codebase allows ───
+    // "noImplicitReturns": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // ── React? (remove if pure backend) ─────────────────────
+    // "jsx": "react-jsx",
+    // "jsxImportSource": "@emotion/react",   // if using emotion
+  },
+
+  "include": [
+    "src/**/*"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}
